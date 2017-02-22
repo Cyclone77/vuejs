@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模版语法</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>Message: {{ message }}</p>
+        <span v-once="true">一次性插值{{ message }}</span>
+        <div v-bind:id="dynamicId">html属性</div>
+
+        <p>v-bind 绑定</p>
+        <a v-bind:href="url">绑定属性</a>
+        <a :href="url">绑定属性缩写</a>
+
+        <p>v-on 绑定</p>
+        <button v-on:click="dosomething">绑定属性</button>
+        <button @click="dosomething">绑定属性缩写</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello World!",
+                dynamicId: "divID1",
+                url: "#",
+                dosomething: function(){
+                    console.log("测试");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
