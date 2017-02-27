@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-if="ok">标题</h1>
+        <h2 v-else>2级标题</h2>
+
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
+
+        <h1 v-show="ok">Hello!</h1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                ok: true,
+                type: "A"
+            }
+        })
+    </script>
+</body>
+
+</html>

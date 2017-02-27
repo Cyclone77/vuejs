@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Class与Style绑定</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }"></div>
+        <div v-bind:class="classObject"></div>
+        <div v-bind:class="classComputer"></div>
+        <div v-bind:class="[activeClass, errorClass]"></div>
+
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px', 'border-radius': radius + 'px' }"></div>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                isActive: true,
+                hasError: false,
+
+                classObject: {
+                    active: true,
+                    'text-danger': true
+                },
+
+                //计算属性
+                isActive: true,
+                error: null,
+
+                //数组语法
+                activeClass: 'active',
+                errorClass: 'text-danger',
+
+                //对象语法
+                activeColor: 'red',
+                fontSize: 30,
+                radius: 4
+            },
+            computed: {
+                classComputer: function() {
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-danger': this.error && this.error.type === 'fatal'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
