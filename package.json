@@ -1,0 +1,19 @@
+{
+  "name": "vuejs",
+  "version": "1.0.0",
+  "description": "vue-Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cyclone77/vuejs.git"
+  },
+  "author": "cyclone77",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cyclone77/vuejs/issues"
+  },
+  "homepage": "https://github.com/Cyclone77/vuejs#readme"
+}
