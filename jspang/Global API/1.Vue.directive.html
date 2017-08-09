@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.directive</title>
+</head>
+
+<body>
+    <h1>vue.directive 指令</h1>
+    <div id="app">
+        <p v-style="color"><span>计算：</span>{{num}}</p>
+        <button @click="add">增加</button>
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        // Vue.directive("style", function(el, binding) {
+        //     console.dir(arguments);
+        // })
+        Vue.directive("style", {
+            bind: function(el, mth) {
+                el.style.color = mth.value;
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 1,
+                color: "red"
+            },
+            methods: {
+                add: function() {
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
