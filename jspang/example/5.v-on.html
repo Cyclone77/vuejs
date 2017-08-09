@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on</title>
+</head>
+
+<body>
+    <h1>v-on</h1>
+    <hr>
+    <div id="app">
+        <span v-text="count"></span>
+        <br>
+        <button v-on:click="suanfeng(1)">加分</button>
+        <button v-on:click="suanfeng(-1)">减分</button>
+        <input type="text" v-on:keyup.enter="onEnter" v-model="secondCount" />
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                count: 0,
+                secondCount: 1
+            },
+            methods: {
+                suanfeng: function(status) {
+                    status > 0 ? this.count++ : this.count--;
+                },
+                onEnter: function() {
+                    this.count = this.count + parseInt(this.secondCount);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
