@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind</title>
+    <style>
+        .active {
+            color: red;
+        }
+        
+        .fontSize {
+            font-size: 150%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-model</h1>
+    <hr>
+    <div id="app">
+        <img v-bind:src="imgSrc" alt="">
+        <a :href="ahref" target="_blank">跳转</a>
+        <hr />
+        <p></p>
+        <h3 :class="{ active : secceed }">状态</h3>
+        <input type="checkbox" v-model="secceed" id="isbool">
+        <label for="isbool">状态：{{ secceed }}</label>
+        <p :class="[color, fontSize]">数组显示class</p>
+        <p :class="secceed?color:fontSize">三元用算符显示class</p>
+        <div :style="styleObject">6、用对象绑定style样式</div>
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                imgSrc: "https://cn.vuejs.org/images/xiaozhuanlan-sidebar.png",
+                ahref: "https://github.com",
+                secceed: true,
+                color: "active",
+                fontSize: "fontSize",
+                styleObject: {
+                    "font-size": '24px',
+                    color: 'green'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

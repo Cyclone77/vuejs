@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-pre</title>
+    <style>
+        .active {
+            color: red;
+        }
+        
+        .fontSize {
+            font-size: 150%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-pre</h1>
+    <hr>
+    <div id="app">
+        <div v-pre>{{ message }}</div>
+        <div v-cloak>
+            {{ message }}
+        </div>
+        <div v-once>第一次绑定的值：{{message}}</div>
+        <div><input type="text" v-model="message"></div>
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "hello world"
+            }
+        });
+    </script>
+</body>
+
+</html>
