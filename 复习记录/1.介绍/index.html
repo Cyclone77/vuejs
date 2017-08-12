@@ -55,6 +55,19 @@
             <todo-item></todo-item>
         </ol>
     </div>
+    <h2 class="title">组件传参</h2>
+    <div id="app-8">
+        <ul>
+            <!--
+              现在我们为每个 todo-item 提供待办项对象
+              待办项对象是变量，即其内容可以是动态的。
+              我们也需要为每个组件提供一个“key”，晚些时候我们会做个解释。
+            -->
+            <todo-item-new v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+            </todo-item-new>
+        </ul>
+    </div>
+
     <script src="https://unpkg.com/vue"></script>
     <script>
         var app = new Vue({
@@ -111,20 +124,35 @@
         });
 
         // 定义名为 todo-item 的新组件
-        // Vue.component('todo-item', {
-        //     template: '<li>这是个待办项</li>'
-        // })
-
         Vue.component('todo-item', {
+            template: '<li>这是个待办项</li>'
+        });
+        var app7 = new Vue({
+            el: "#app-7"
+        });
+
+        Vue.component('todo-item-new', {
             // todo-item 组件现在接受一个
             // "prop"，类似于一个自定义属性
             // 这个属性名为 todo。
             props: ['todo'],
-            template: '<li>{{ todo.text }}</li>'
+            template: '<li><span>第{{ todo.id + 1 }}项</span>{{ todo.text }}</li>'
         })
-        var app7 = new Vue({
-            el: "#app-7"
-        });
+        var app8 = new Vue({
+            el: '#app-8',
+            data: {
+                groceryList: [{
+                    id: 0,
+                    text: '蔬菜'
+                }, {
+                    id: 1,
+                    text: '奶酪'
+                }, {
+                    id: 2,
+                    text: '随便其他什么人吃的东西'
+                }]
+            }
+        })
     </script>
 </body>
 
