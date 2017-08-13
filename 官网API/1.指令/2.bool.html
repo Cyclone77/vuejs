@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>布尔类型指令</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <h1>v-show</h1>
+    <h3>根据表达式之真假值，切换元素的 display CSS 属性。</h3>
+    <h4>当条件变化时该指令触发过渡效果。</h4>
+    <div id="app-3">
+        <p v-show="ok">这里的内容通过v-show控制</p>
+    </div>
+    <script>
+        var app3 = new Vue({
+            el: "#app-3",
+            data: {
+                ok: true
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>v-if</h1>
+    <h3>根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。</h3>
+    <div id="app-4">
+        <input type="checkbox" v-model="ok" id="putShow" />
+        <label for="putShow">显示或者隐藏下面的内容</label>
+        <p v-if="ok">这里的内容根据v-if渲染</p>
+    </div>
+    <script>
+        var app4 = new Vue({
+            el: "#app-4",
+            data: {
+                ok: true
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>v-else</h1>
+    <h3>限制： 前一兄弟元素必须有 v-if 或 v-else-if。</h3>
+    <div id="app-5">
+        <h1 v-if="ok">Yes</h1>
+        <h1 v-else>No</h1>
+    </div>
+    <script>
+        var app5 = new Vue({
+            el: "#app-5",
+            data: {
+                ok: false
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>v-else-if</h1>
+    <h3>限制: 前一兄弟元素必须有 v-if 或 v-else-if。</h3>
+    <div id="app-6">
+        <input type="text" v-model="type" id="putCon">
+        <label for="putCon">输入显示的内容</label>
+
+        <div class="con" v-if="type==='A'">A</div>
+        <div class="con" v-else-if="type==='B'">B</div>
+        <div class="con" v-else-if="type==='C'">C</div>
+        <div v-else>
+            Not A/B/C
+        </div>
+    </div>
+    <script>
+        var app6 = new Vue({
+            el: "#app-6",
+            data: {
+                type: "C"
+            }
+        })
+    </script>
+</body>
+
+</html>
