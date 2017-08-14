@@ -84,11 +84,11 @@
     <hr>
     <h1>下拉列表</h1>
     <div id="app-4">
-        <select name="" id="" v-model="selected">
+        <select name="" id="selOpt" v-model="selected">
             <option disabled value="">请选择</option>
-            <option value="A">A</option>
+            <option>A</option>
             <option value="B">B</option>
-            <option value="C">C</option>
+            <option>C</option>
             <option value="D">D</option>
             <option value="F">F</option>
         </select>
@@ -99,6 +99,58 @@
             el: "#app-4",
             data: {
                 selected: ""
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>多选列表</h1>
+    <div id="app-5">
+        <select name="" id="" multiple v-model="selectArr">
+            <option v-for="item in items">
+                {{ item.text }}
+            </option>
+            
+        </select>
+        <p>已选择：{{ selectArr }}</p>
+    </div>
+    <script>
+        var app5 = new Vue({
+            el: "#app-5",
+            data: {
+                selectArr: ["A", "D"],
+                items: [{
+                    text: "A",
+                    id: 1
+                }, {
+                    text: "B",
+                    id: 2
+                }, {
+                    text: "C",
+                    id: 3
+                }, {
+                    text: "D",
+                    id: 4
+                }]
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>修饰符</h1>
+    <div id="app-6">
+        <h3>在 "change" 而不是 "input" 事件中更新</h3>
+        <input v-model.lazy="msg">
+        <input v-model.number="age" type="number">
+        <input v-model.trim="msg">
+        <p>{{msg}}-{{age}}</p>
+    </div>
+    <script>
+        var app6 = new Vue({
+            el: "#app-6",
+            data: {
+                msg: "hello world",
+                age: 2
             }
         })
     </script>
