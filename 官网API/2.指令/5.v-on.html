@@ -34,20 +34,41 @@
 
     <hr>
     <h1>内联处理器方法</h1>
+    <h3>有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 $event 把它传入方法：</h3>
     <div id="app-2">
         <button v-on:click="say('hi')">Say hi</button>
-        <button v-on:click="say('what')">Say what</button>
+        <button v-on:click="say('what', $event)">Say what</button>
     </div>
     <script>
         var app2 = new Vue({
             el: "#app-2",
             methods: {
-                say: function(msg) {
+                say: function(msg, event) {
                     console.log(msg);
+                    if (event) {
+                        event.preventDefault();
+                        console.log(event.target.tagName);
+                    }
                 }
             }
         })
     </script>
+
+    <hr>
+    <h1>v-on修饰符</h1>
+    <ul>
+        <li>.stop - 调用 event.stopPropagation()。</li>
+        <li>.prevent - 调用 event.preventDefault()。</li>
+        <li>.capture - 添加事件侦听器时使用 capture 模式。</li>
+        <li>.self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。</li>
+        <li>.{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。</li>
+        <li>.native - 监听组件根元素的原生事件。</li>
+        <li>.once - 只触发一次回调。</li>
+        <li>.left - (2.2.0) 只当点击鼠标左键时触发。</li>
+        <li>.right - (2.2.0) 只当点击鼠标右键时触发。</li>
+        <li>.middle - (2.2.0) 只当点击鼠标中键时触发。</li>
+        <li>.passive - (2.3.0) 以 { passive: true } 模式添加侦听器</li>
+    </ul>
 </body>
 
 </html>

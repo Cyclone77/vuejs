@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>指令</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,6 +18,9 @@
     <h3 class="title2">更新元素的 textContent。</h3>
     <div id="app">
         <p v-text="message"></p>
+        <!--这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。-->
+        <p v-cloak>{{message}}</p>
+        <p v-once v-text="message"></p>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>

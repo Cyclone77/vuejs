@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <h1>基本用法</h1>
+    <div id="app-1">
+        <ul>
+            <!--可以通过v-if过滤-->
+            <li v-for="(item,key,index) in items" v-if="item.value%2==0">
+                {{ index }} - {{ item.text }}:{{item.value}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app-1",
+            data: {
+                items: [{
+                    text: "foo",
+                    value: 22
+                }, {
+                    text: "arr",
+                    value: 28
+                }, {
+                    text: "bar",
+                    value: 19
+                }]
+            }
+        })
+    </script>
+
+    <hr>
+    <h1></h1>
+</body>
+
+</html>
