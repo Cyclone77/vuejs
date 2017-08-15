@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <h1>绑定一个属性（值为字符串）</h1>
+    <div id="app-1">
+        <img v-bind:src="imageSrc" alt="" />
+        <img :src="imageSrc" alt="" />
+        <img v-bind:src="'https://cn.vuejs.org/images/'+ imageName" alt="">
+        <a :href="ahref" :title="atitle">绑定href和title</a>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app-1",
+            data: {
+                imageSrc: "https://cn.vuejs.org/images/xiaozhuanlan-sidebar.png",
+                imageName: "xiaozhuanlan-sidebar.png",
+                ahref: "#",
+                atitle: "测试链接"
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>class 绑定（值为对象）</h1>
+    <div id="app-2">
+        <h3>通过判断绑定一个样式</h3>
+        <input id="putRedfontColor" type="checkbox" v-model="isRed">
+        <label for="putRedfontColor">显示红色字体</label>
+        <p v-bind:class="{ red: isRed }">是否显示红色字体</p>
+        <h3>同时绑定多个样式</h3>
+        <p :class="[redColor,fontSize]">同时绑定字体为红色和字体为22px的样式</p>
+        <p :class="newClass">当然也可以直接用data中的数组绑定，同时多个斜体</p>
+        <h3>对象判断是否绑定</h3>
+        <h4>提示：绑定时对象的值为字符串，和vue变量是有区别的</h4>
+        <code>
+                &lt;p :class="['test', 'italic', fontSize, { red: isRed }]"&gt;对象判断属性是否绑定class&lt;/p&gt;
+        </code>
+        <p>以下是通过上面的代码解析的：</p>
+        <p :class="['test', 'italic', fontSize, { red: isRed }]">对象判断属性是否绑定class</p>
+    </div>
+    <style>
+        .red {
+            color: red;
+        }
+        
+        .font {
+            font-size: 22px;
+        }
+        
+        .italic {
+            font-style: italic;
+        }
+    </style>
+    <script>
+        var app2 = new Vue({
+            el: "#app-2",
+            data: {
+                isRed: false,
+                redColor: "red",
+                fontSize: "font",
+                newClass: ["red", "font", "italic"]
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>绑定DOM属性prop 绑定一个有属性的对象 </h1>
+    <div id="app-3">
+        <div v-bind="{ id: someProp, 'other-attr': otherProp }">
+            <ul class="red">
+                <li>列表</li>
+                <li>列表</li>
+                <li>列表</li>
+            </ul>
+        </div>
+        <h3>通过 prop 修饰符绑定 DOM 属性</h3>
+        <!-- 通过 prop 修饰符绑定 DOM 属性 -->
+        <h3>Node（节点）元素的DOM属性把驼峰命名法通过'-'，vue才能识别</h3>
+        <h3>DOM属性最后声明的优先级最高</h3>
+        <!--DOM元素属性-->
+        <p :inner-text.prop="title" v-bind:text-content.prop="text" id="pText"></p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app-3",
+            data: {
+                //HTML节点属性
+                someProp: "divCoreList",
+                otherProp: "fnContent",
+                text: "测试文本",
+                title: "测试123"
+            }
+        })
+    </script>
+</body>
+
+</html>
