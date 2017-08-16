@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册组件</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+
+    <h1>注册和局部注册</h1>
+    <div id="app-1">
+        <my-component></my-component>
+        <my-components></my-components>
+    </div>
+    <script>
+        Vue.component("my-component", {
+            template: "<div>一个自定义组件</div>"
+        });
+        new Vue({
+            el: "#app-1",
+            components: {
+                'my-components': {
+                    template: "<div>一个局部自定义组件</div>"
+                }
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>data必须是函数</h1>
+    <div id="app-2">
+        <cy-butt></cy-butt>
+        <cy-butt></cy-butt>
+        <cy-butt></cy-butt>
+    </div>
+    <script>
+        var data = {
+            counter: 1
+        };
+        Vue.component("cy-butt", {
+            template: '<button @click="counter++">{{ counter }}</button>',
+            data: function() {
+                return {
+                    counter: 0
+                }
+            }
+        })
+        var app2 = new Vue({
+            el: "#app-2"
+        })
+    </script>
+</body>
+
+</html>
