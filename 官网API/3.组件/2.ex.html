@@ -126,7 +126,14 @@
         
     </div>
     <script>
-        Vue.component("")
+        Vue.component("text-component",{
+            template: "<p>这是组件内容</p>",
+            data: function(){
+                return {
+                    message: "hello"
+                }
+            }
+        })
         var app6 = new Vue({
             el: "#app-6"
         })
