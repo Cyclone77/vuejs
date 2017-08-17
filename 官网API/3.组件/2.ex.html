@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件练习</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+
+    <h1>注册组件</h1>
+    <div id="app-1">
+        <my-component></my-component>
+    </div>
+    <script>
+        //调用Vue.extend()创建构造器
+        var myComponent = Vue.extend({
+            template: "<div>组件的构造器</div>"
+        })
+        //调用Vue.component()注册组件
+        var component = Vue.component("my-component", myComponent);
+        var app1 = new Vue({
+            el: "#app-1"
+        })
+
+        console.log(myComponent === component);
+    </script>
+
+    <hr>
+    <h1>全局注册和局部注册</h1>
+    <div id="app-2">
+        <my-component></my-component>
+        <my-components></my-components>
+    </div>
+    <div id="app-3">
+        <p>{{message}}</p>
+        <my-components></my-components>
+    </div>
+    <script>
+        var app2 = new Vue({
+            el: "#app-2",
+            components: {
+                "my-components": {
+                    template: "<div>这里是局部组件</div>"
+                }
+            }
+        })
+        new Vue({
+            el: "#app-3",
+            data: {
+                message: "不能使用my-component组件，因为my-component是一个局部组件，它属于#app-2"
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>父组件和子组件</h1>
+    <div id="app-4">
+        <parent-component>
+            <!--错误 使用子组件的方式-->
+            <child-component>asd</child-component>
+        </parent-component>
+        <!--错误 使用子组件的方式-->
+        <child-component>asd</child-component>
+    </div>
+    <script>
+        //Vue2.x 父组件必须包裹子组件
+        Vue.component("parent-component", {
+            template: [
+                '<div>',
+                '这里是父组件<child-component></child-component>',
+                '<child-component></child-component>',
+                '</div>',
+            ].join(""),
+            components: {
+                "child-component": {
+                    template: "<p>这里是子组件</p>"
+                }
+            }
+        })
+        var app4 = new Vue({
+            el: "#app-4"
+        })
+    </script>
+
+    <hr>
+    <h1>使用script或template标签</h1>
+    <div id="app-5">
+        <hello-world></hello-world>
+        <continue-body></continue-body>
+    </div>
+    <!--另一种定义模版的方式是在 JavaScript 标签里使用 text/x-template 类型，并且指定一个 id-->
+    <script type="text/x-template" id="hello-world-template">
+        <p>Hello hello hello</p>
+    </script>
+    <!--是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化-->
+    <!--但是模版的内容是查找的node[0]-->
+    <template id="continue-template">
+        <div>
+            <h1>标题</h1>
+            <h3>副标题</h3>
+            <p>内容</p>
+        </div>
+        <p>这里的内容依然不能显示</p>
+    </template>
+    <script>
+        var app5 = new Vue({
+            el: "#app-5",
+            components: {
+                "hello-world": {
+                    template: "#hello-world-template"
+                },
+                "continue-body": {
+                    template: "#continue-template"
+                }
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>组件的el和data选项</h1>
+    <div id="app-6">
+        
+    </div>
+    <script>
+        Vue.component("")
+        var app6 = new Vue({
+            el: "#app-6"
+        })
+    </script>
+</body>
+
+</html>

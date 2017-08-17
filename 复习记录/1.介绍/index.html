@@ -135,8 +135,8 @@
             // todo-item 组件现在接受一个
             // "prop"，类似于一个自定义属性
             // 这个属性名为 todo。
-            props: ['todo'],
-            template: '<li><span>第{{ todo.id + 1 }}项</span>{{ todo.text }}</li>'
+            props: ['todo','key'],
+            template: '<li><span>第{{ todo.id + 1 }}项</span>{{ todo.text }}-{{ key }}</li>'
         })
         var app8 = new Vue({
             el: '#app-8',

@@ -43,7 +43,7 @@
         };
         Vue.component("cy-butt", {
             template: '<button @click="counter++">{{ counter }}</button>',
-            data: function() {
+            data: function () {
                 return {
                     counter: 0
                 }
@@ -51,6 +51,24 @@
         })
         var app2 = new Vue({
             el: "#app-2"
+        })
+    </script>
+
+    <hr>
+    <h1>Prop-传递数据</h1>
+    <div id="app-3">
+        <child v-bind:my-Message="message"></child>
+    </div>
+    <script>
+        Vue.component("child", {
+            props: ["myMessage"],
+            template: '<span>{{ myMessage }}</span>'
+        })
+        var app3 = new Vue({
+            el: "#app-3",
+            data:{
+                message:"hello"
+            }
         })
     </script>
 </body>
