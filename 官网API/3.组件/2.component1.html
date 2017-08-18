@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://v1-cn.vuejs.org/js/vue.js"></script>
 
     <h1>注册组件</h1>
     <div id="app-1">
@@ -158,7 +158,7 @@
             </tr>
         </table>
 
-        <prop-component :my-name.sync="name" :my-age="age"></prop-component>
+        <prop-component :my-name.sync="name" :my-age.once="age"></prop-component>
     </div>
 
     <template id="componentProp">
