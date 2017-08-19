@@ -10,7 +10,7 @@
 
 <body>
     <script src="https://unpkg.com/vue"></script>
-
+    <!-- <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script> -->
     <hr>
     <h1>编译作用域</h1>
     <div id="app-1">
@@ -42,6 +42,129 @@
                             alert(this.msg);
                         }
                     }
+                }
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>Slot 使用</h1>
+    <div id="app-2">
+        <my-component>
+            <h1>分发内容:Hello Vue.js!</h1>
+            <h2>分发内容:Hello World!</h2>
+        </my-component>
+
+        <my-component>
+        </my-component>
+    </div>
+    <template id="my-componentslot">
+        <div class="content">
+            <h2>this is a coponent</h2>
+            <slot>没有分发内容，则显示slot的内容</slot>
+            <p>say something</p>
+        </div>
+    </template>
+    <script>
+        var app2 = new Vue({
+            el: "#app-2",
+            components: {
+                'my-component': {
+                    template: "#my-componentslot"
+                }
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>具名slot</h1>
+    <div id="app-3">
+        <h3>这里是一个布局组件</h3>
+        <app-layout>
+            <h3 slot="header">具有name属性的分发内容：这里是页面标题</h3>
+            <p>匿名分发内容：</p>
+            <p>主要内容的一个段落</p>
+            <p>另一个段落</p>
+            <p slot="footer">具有name属性的分发内容：这里是页脚</p>
+        </app-layout>
+    </div>
+    <template id="app-layout">
+        <div class="container">
+            <header>
+                <slot name="header"></slot>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <slot name="footer"></slot>
+            </footer>
+        </div>
+    </template>
+    <script>
+        var app3 = new Vue({
+            el: "#app-3",
+            components: {
+                'app-layout': {
+                    template: "#app-layout"
+                }
+            }
+        })
+    </script>
+
+    <hr>
+    <h1>作用域插槽</h1>
+    <div id="app-4">
+        <child>
+            <!--在父级中，具有特殊属性 scope 的 <template> 元素必须存在，表示它是作用域插槽的模板。-->
+            <template scope="v">
+                <p>hello from parent</p>
+                <p>{{ v.text }}</p>
+            </template>
+        </child>
+        <itemlist :items="items">
+            <template slot="item" scope="v">
+                <li>{{ v.text }}</li>
+            </template>
+        </itemlist>
+    </div>
+    <template id="my-compScope">
+        <div class="child">
+            <slot text="hello from child"></slot>
+        </div>
+    </template>
+    <template id="list-component">
+        <ul>
+            <slot name="item"
+                v-for="item in items"
+                :text="item.text">
+                <!--这里备用内容-->
+                <p>列表渲染错误</p>
+            </slot>
+        </ul>
+    </template>
+    <script>
+        var app4 = new Vue({
+            el: "#app-4",
+            data: {
+                items: [{
+                    text: "zhangsan",
+                    age: 19
+                }, {
+                    text: "lisi",
+                    age: 20
+                }, {
+                    text: "wangwu",
+                    age: 21
+                }]
+            },
+            components: {
+                'child': {
+                    template: "#my-compScope"
+                },
+                'itemlist': {
+                    template: "#list-component",
+                    props: ["items"]
                 }
             }
         })
