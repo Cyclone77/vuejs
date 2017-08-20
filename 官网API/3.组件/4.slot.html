@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
     <h1>指定名称Slot</h1>
     <div id="app-1">
         <my-slotcomp>
@@ -37,6 +37,77 @@
 
     <hr>
     <h1>指定名称的slot</h1>
+    <div id="app-2">
+        <button @click="openDialog">打开</button>
+        <model-dialog v-bind:show.sync="show">
+            <header class="dialog-header" slot="header">
+                <h1 class="dialog-title">提示信息</h1>
+            </header>
+
+            <div class="dialog-body" slot="body">
+                <p>你想在对话框中放什么内容都可以！</p>
+                <p>你可以放一段文字，也可以放一些表单，或者是一些图片。</p>
+            </div>
+
+            <footer class="dialog-footer" slot="footer">
+                <button class="btn" @click="closeDialog">关闭</button>
+            </footer>
+        </model-dialog>
+    </div>
+    <!-- 弹框组件 -->
+    <template id="dialog-template">
+        <div class="dialogs" v-show="show">
+            <div class="dialog" v-bind:class="{ 'dialog-active': show }">
+                <div class="dialog-content">
+                    <div class="close rotate">
+                        <span class="iconfont icon-close" @click="close"></span>
+                    </div>
+                    <slot name="header"></slot>
+                    <slot name="body"></slot>
+                    <slot name="footer"></slot>
+                </div>
+            </div>
+            <div class="dialog-overlay"></div>
+        </div>
+    </template>
+    <style>
+        .dialogs {
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        
+        .dialog-header {
+            height: 50px;
+            background-color: blue;
+        }
+    </style>
+    <script>
+        Vue.component("model-dialog", {
+            template: "#dialog-template",
+            props: ["show"],
+            methods: {
+                close: function() {
+                    this.show = false;
+                }
+            }
+        })
+
+        new Vue({
+            el: "#app-2",
+            data: {
+                show: true
+            },
+            methods: {
+                openDialog: function() {
+                    this.show = true;
+                },
+                closeDialog: function() {
+                    this.show = false;
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>

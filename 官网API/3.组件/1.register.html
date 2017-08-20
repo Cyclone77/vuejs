@@ -13,15 +13,18 @@
 
     <h1>注册和局部注册</h1>
     <div id="app-1">
-        <my-component></my-component>
+        <my-component v-show="show"></my-component>
         <my-components></my-components>
     </div>
     <script>
         Vue.component("my-component", {
             template: "<div>一个自定义组件</div>"
         });
-        new Vue({
+        var app1 = new Vue({
             el: "#app-1",
+            data: {
+                show: true
+            },
             components: {
                 'my-components': {
                     template: "<div>一个局部自定义组件</div>"
@@ -43,7 +46,7 @@
         };
         Vue.component("cy-butt", {
             template: '<button @click="counter++">{{ counter }}</button>',
-            data: function () {
+            data: function() {
                 return {
                     counter: 0
                 }
@@ -66,8 +69,8 @@
         })
         var app3 = new Vue({
             el: "#app-3",
-            data:{
-                message:"hello"
+            data: {
+                message: "hello"
             }
         })
     </script>
