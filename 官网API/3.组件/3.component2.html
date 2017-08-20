@@ -124,7 +124,7 @@
         </child>
         <itemlist :items="items">
             <template slot="item" scope="v">
-                <li>{{ v.text }}</li>
+                <li>{{ v.text }} - {{ v.name }}</li>
             </template>
         </itemlist>
     </div>
@@ -164,7 +164,14 @@
                 },
                 'itemlist': {
                     template: "#list-component",
-                    props: ["items"]
+                    props: ["items"],
+                    items: [{
+                        text: "jeep",
+                        age: 21
+                    }, {
+                        text: "temp",
+                        age: 22
+                    }]
                 }
             }
         })
