@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <h1>watch 监控</h1>
+    <div id="app-1">
+        <p>{{ count }}</p>
+        <p><button @click="add(2)">add</button></p>
+        <p>
+            <my-btn @click.native="add(2)"></my-btn>
+        </p>
+    </div>
+    <script>
+        var app1 = new Vue({
+            el: "#app-1",
+            data: {
+                count: 1
+            },
+            methods: {
+                add: function(num) {
+                    this.count += num;
+                }
+            },
+            components: {
+                'my-btn': {
+                    template: "<button>add</button>"
+                }
+            }
+            // ,
+            // watch: {
+            //     count: function(val, oldVal) {
+            //         console.log('new: %s, old: %s', val, oldVal);
+            //     }
+            // }
+        });
+        app1.$watch("count", function(val, oldVal) {
+            console.log('new: %s, old: %s', val, oldVal);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins 混入</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <h1>mixins 混入</h1>
+    <div id="app-1">
+        <p>{{ count }}</p>
+        <p><button @click="add(2)">add</button></p>
+        <p>
+            <my-btn @click.native="add(2)"></my-btn>
+        </p>
+    </div>
+    <script>
+        Vue.mixin({
+            updated: function() {
+                console.log("全局混入");
+            }
+        })
+        var app1 = new Vue({
+            el: "#app-1",
+            data: {
+                count: 1
+            },
+            methods: {
+                add: function(num) {
+                    this.count += num;
+                }
+            },
+            components: {
+                'my-btn': {
+                    template: "<button>add</button>"
+                }
+            },
+            updated: function() {
+                console.log("vue钩子函数");
+            },
+            mixins: [{
+                updated: function() {
+                    console.log('局部混入');
+                }
+            }]
+        })
+    </script>
+
+    <hr>
+    <h1>delimiters</h1>
+    <div id="app-2">
+        ${message}
+    </div>
+    <script>
+        var app2 = new Vue({
+            el: "#app-2",
+            data: {
+                message: "hello world"
+            },
+            delimiters: ['${', '}']
+        });
+    </script>
+</body>
+
+</html>

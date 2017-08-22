@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>propsData</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <h1>propsData</h1>
+    <div id="divhello"></div>
+    <div id="divextend"></div>
+    <script>
+        var Comp = Vue.extend({
+            props: ["msg"],
+            template: "<p>{{message}} - {{msg}}</p>",
+            data: function() {
+                return {
+                    message: "hello world"
+                }
+            }
+        });
+        new Comp().$mount("#divhello");
+        new Comp({
+            propsData: {
+                msg: "hello extend"
+            }
+        }).$mount("#divextend");
+    </script>
+    <div id="mount-point"></div>
+    <script>
+        // 创建构造器
+        var Profile = Vue.extend({
+                template: '<p>{{firstName}} {{lastName}} aka {{alias}} -- {{ msg }}</p>',
+                props: ["msg"],
+                data: function() {
+                    return {
+                        firstName: 'Walter',
+                        lastName: 'White',
+                        alias: 'Heisenberg'
+                    }
+                }
+            })
+            // 创建 Profile 实例，并挂载到一个元素上。
+        new Profile({
+            propsData: {
+                msg: "hello extend"
+            }
+        }).$mount('#mount-point')
+    </script>
+</body>
+
+</html>
