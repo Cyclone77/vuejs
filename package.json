@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Cyclone77/vuejs/issues"
   },
-  "homepage": "https://github.com/Cyclone77/vuejs#readme"
+  "homepage": "https://github.com/Cyclone77/vuejs#readme",
+  "dependencies": {
+    "vuex": "^2.3.1"
+  }
 }
