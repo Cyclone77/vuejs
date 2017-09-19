@@ -1,13 +1,14 @@
 <template>
-    <div>
-        <h3>Count is {{ counterValue }}</h3>
-    </div>
+  <div>
+    <h3>Count is {{ counterValue }}</h3>
+  </div>
 </template>
+
 <script>
-import { getCount } from '@/store/getters'
+import { getCount } from '../vuex/getters'
 export default {
-    computed: {
-        counterValue:getCount
+    computed:{
+        counterValue: getCount
     }
 //   vuex: {
 //     getters: {

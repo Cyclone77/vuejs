@@ -1,18 +1,19 @@
 <template>
   <div>
-      <button class="button" @click="increment">Increment +1</button>
+    <button @click='increment'>Increment +1</button>
   </div>
 </template>
+
 <script>
-import {incrementCounter} from '@/store/actions'
+import { incrementCounter } from '../vuex/actions'
 export default {
-    methods:{
+    methods: {
         increment: incrementCounter
     }
-//   vuex:{
-//       actions:{
-//           increment: incrementCounter
-//       }
+//   vuex: {
+//     actions: {
+//       increment: incrementCounter
+//     }
 //   }
 }
 </script>
