@@ -21,9 +21,37 @@ const mutations = {
     }
 }
 
+// 创建一个对象存在 Action 函数
+const actions = {
+    increment(context, amount) {
+        context.commit('INCREMENT', amount);
+    },
+    incrementAsync(context, commit) {
+        setTimeout(() => {
+            context.commit('INCREMENT', commit)
+        }, 1000)
+    }
+}
+
+const moduleA = {
+    state: {
+        msg: "hello module"
+    },
+    mutations: {
+        showMsg(text) {
+            this.state.msg = text;
+            console.log(this.state.msg);
+        }
+    }
+}
+
 // 整合初始状态和变更函数，我们就得到了我们所需的 store
 // 至此，这个 store 就可以连接到我们的应用中
 export default new Vuex.Store({
     state,
-    mutations
+    mutations,
+    actions,
+    modules: {
+        text: moduleA
+    }
 })

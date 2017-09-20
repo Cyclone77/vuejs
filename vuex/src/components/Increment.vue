@@ -5,10 +5,12 @@
 </template>
 
 <script>
-import { incrementCounter } from '../vuex/actions'
 export default {
     methods: {
-        increment: incrementCounter
+        increment(){
+            this.$store.dispatch("incrementAsync", 2);
+            this.$store.commit("showMsg", "hello commit");
+        }
     }
 //   vuex: {
 //     actions: {
