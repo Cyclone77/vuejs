@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <img src="./assets/logo.png" />
+    <p>
+      <router-link to="/">主页</router-link>
+      <router-link to="/hi">页面2</router-link>
+    </p>
     <router-view></router-view>
   </div>
 </template>

@@ -1,7 +1,18 @@
-import store from '@/vuex/store'
-// action 会收到 store 作为它的第一个参数
-// 既然我们只对事件的分发（dispatch 对象）感兴趣。（state 也可以作为可选项放入）
-// 我们可以利用 ES6 的解构（destructuring）功能来简化对参数的导入
-export const incrementCounter = function({ state }) {
-    store.commit("INCREMENT", 2)
+// 创建一个对象存在 Action 函数
+// 接受异步事物
+export const actions = {
+    // 提交 mutation 的另一种方式是直接使用包含 type 属性的对象：
+    // action 会收到 store 作为它的第一个参数
+    // Action 通过 store.dispatch 方法触发
+    increment(context, amount) {
+        context.commit({
+            type: 'INCREMENT',
+            amount: amount
+        });
+    },
+    incrementAsync({ commit }) {
+        setTimeout(() => {
+            commit('INCREMENTONE')
+        }, 1000)
+    }
 }

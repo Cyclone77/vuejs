@@ -1,8 +1,9 @@
-import store from '@/vuex/store'
-// 这个 getter 函数会返回 count 的值
-// 在 ES6 里你可以写成：
-// export const getCount = state => state.count
-
-export function getCount() {
-    return store.state.count
+//创建一个getter对象，state的计算属性
+export const getters = {
+    doneTodos: state => {
+        return state.todos.filter(todo => todo.done)
+    },
+    doneTodosCount: (state, gettersother) => {
+        return getters.doneTodos.length;
+    }
 }
