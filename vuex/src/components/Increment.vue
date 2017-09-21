@@ -14,7 +14,7 @@ export default {
         incrementone() {
             //Action 通过 store.dispatch 方法触发
             this.$store.dispatch("incrementAsync");
-            this.$store.commit("showMsg", "hello commit");
+            this.$store.commit("showMsg", +new Date());
             console.log(this.$store.getters.doneTodos);
             // console.log(this.$store.getters.doneTodosCount);
         },
